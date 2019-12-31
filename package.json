@@ -1,0 +1,29 @@
+{
+  "name": "koa-static-middle",
+  "version": "0.0.1",
+  "description": "A Static Middleware based on Koa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gqlicomeon/koa-static-middle.git"
+  },
+  "keywords": [
+    "koa",
+    "koa-static",
+    "koa-send",
+    "middleware",
+    "server"
+  ],
+  "author": "gqli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gqlicomeon/koa-static-middle/issues"
+  },
+  "homepage": "https://github.com/gqlicomeon/koa-static-middle#readme",
+  "dependencies": {
+    "mime": "^2.4.4"
+  }
+}
