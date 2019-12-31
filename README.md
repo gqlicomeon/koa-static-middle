@@ -5,11 +5,11 @@ A Static Middleware based on Koa
 
 ## Api
 ```js
-    const koa = require("koa");
-    const app = new koa();
-    const static = require("koa-static-middle");
-    app.use(static(root,Opts));
-    app.listen(80);
+  const koa = require("koa");
+  const app = new koa();
+  const static = require("koa-static-middle");
+  app.use(static(root,Opts));
+  app.listen(80);
 ```
 * `root`root directory string. this is `neccessary`！！！
 * `opts`options Object
@@ -21,23 +21,23 @@ A Static Middleware based on Koa
 
 ## Example
 ```js
-    const koa = require("koa");
-    const app = new koa();
-    const static = require("koa-static-middle");
-    //opts is {}
-    app.use(static("./static"));
+  const koa = require("koa");
+  const app = new koa();
+  const static = require("koa-static-middle");
+  //opts is {}
+  app.use(static("./static"));
 
-    //default file is index.txt
-    app.use(static("./static",{index:"index.txt"}));
+  //default file is index.txt
+  app.use(static("./static",{index:"index.txt"}));
 
-    //maxAge is 10
-    app.use(static("./static"),{maxAge:10});
+  //maxAge is 10
+  app.use(static("./static"),{maxAge:10});
 
-    //set resHeader,this is used by ctx.set()
-    app.use(static("./static",{resHeader:{"Cache-Control":"public","ETag":123}}));
+  //set resHeader,this is used by ctx.set()
+  app.use(static("./static",{resHeader:{"Cache-Control":"public","ETag":123}}));
 
-    //if opts.index is index.html, then http://127.0.0.1 will visit the path "./static/index.html"
-    app.listen(80);
+  //if opts.index is index.html, then http://127.0.0.1 will visit the path "./static/index.html"
+  app.listen(80);
 ```
 ## License
 `ISC`
