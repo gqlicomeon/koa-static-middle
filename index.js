@@ -23,42 +23,32 @@ function static(url,opts={}){
         url = path.resolve("./",url);
     }
     return async function(ctx,next){
-        let reqPath;
-        if (ctx.method !== 'HEAD' && ctx.method !== 'GET'){
-            await next();
-            return;
-        };
-        if(ctx.path === "/"){
-            reqPath = path.resolve(url,opts.index);
-        }else{
-            reqPath = path.join(url,ctx.path);
-        }
+        let reqPath = path.join(url,ctx.path);
         try {
             let stats = await getStats(reqPath);
-            if(stats.isFile()){
-                let type = mime.getType(reqPath);
-                let res;
-                if(/image|audio|video/.test(type)){
-                    res = await readBuffer(reqPath);
-                }else{
-                    res = await readFile(reqPath);
-                }
-                //set header
-                ctx.set("Cache-control",`max-age=${opts.maxAge}`);
-                ctx.set(opts.resHeader);
-                //set type
-                ctx.type = type; 
-                //set status
-                ctx.status = 200;
-                if (ctx.fresh) {
-                    //if fresh set Not Modified
-                    ctx.status = 304;
-                    return;
-                }
-                ctx.body = res;
-            }else{
-                await next();
+            if(stats.isDirectory()){
+                reqPath = path.resolve(reqPath,opts.index);
             }
+            let type = mime.getType(reqPath);
+            let res;
+            if(/image|audio|video|font/.test(type)){
+                res = await readBuffer(reqPath);
+            }else{
+                res = await readFile(reqPath);
+            }
+            //set header
+            ctx.set("Cache-control",`max-age=${opts.maxAge}`);
+            ctx.set(opts.resHeader);
+            //set type
+            ctx.type = type; 
+            //set status
+            ctx.status = 200;
+            if (ctx.fresh) {
+                //if fresh set Not Modified
+                ctx.status = 304;
+                return;
+            }
+            ctx.body = res;
         } catch(e) {
             await next();
         }

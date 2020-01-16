@@ -1,6 +1,6 @@
 {
   "name": "koa-static-middle",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "description": "A Static Middleware based on Koa",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,15 @@
   "keywords": [
     "koa",
     "koa-static",
+    "koa-static-middle",
     "koa-send",
+    "middle",
     "middleware",
+    "file",
+    "static",
+    "sendfile",
+    "directory",
+    "folder",
     "server"
   ],
   "author": "gqli",
